@@ -98,7 +98,7 @@ console.log('23' > '2');
 */
 
 // 5 falsy values: 0, '', undefined, null, NaN
-
+/*
 console.log(Boolean(0));
 console.log(Boolean(undefined));
 console.log(Boolean('Carl'));
@@ -118,3 +118,51 @@ if (height){
 } else {
     console.log('Height is UNDEFINED.');
 } 
+*/
+
+/*
+const age = '18';
+if (age === 18) console.log('You just became an adult.');
+
+if (age == 18) console.log('You just became an adult. (loose)');
+
+const favorite = Number(prompt("What's your favorite number?"));
+console.log(favorite);
+console.log(typeof favorite);
+
+if (favorite == 23) { // 23 === 23 - FALSE
+    console.log("Nice!");
+} else if (favorite === 7) {
+    console.log("7 is nice!");7
+} else {
+    console.log('Nothing.');
+}
+
+if (favorite !== 23) {
+    console.log('Why not 23?!');
+}
+*/
+
+const hasDriversLicense = true; // A
+const hasGoodVision = true; // B
+
+console.log(hasDriversLicense && hasGoodVision);
+console.log(hasDriversLicense || hasGoodVision);
+console.log(!hasDriversLicense);
+
+const shouldDrive = hasDriversLicense && hasGoodVision;
+
+// if (shouldDrive) { 
+//     console.log('Carl is able to drive!');
+// } else {
+//     console.log('Someone else should drive..');
+// }
+
+const isTired = false; // C
+console.log(hasDriversLicense && hasDriversLicense && isTired);
+
+if (shouldDrive && hasGoodVision && !isTired) { 
+    console.log('Carl is able to drive!');
+} else {
+    console.log('Someone else should drive..');
+}
