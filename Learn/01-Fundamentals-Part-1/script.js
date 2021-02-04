@@ -72,6 +72,7 @@ if (birthYear <= 2000) {
 console.log(century);
 */
 
+/*
 // Type Conversion
 const inputYear = '2000';
 console.log(Number(inputYear), inputYear);
@@ -94,5 +95,6 @@ console.log('23' > '2');
  let n = '1' + 1; // '11'
  n = n - 1;
  console.log(n);
+*/
 
- 
+
