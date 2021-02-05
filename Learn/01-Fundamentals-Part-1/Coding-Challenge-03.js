@@ -25,7 +25,7 @@ Test data:
 § Data Bonus 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106
 */
 
-/*
+
 let dolphinsScore, koalasScore;
 
 dolphinsScore = 97 + 112 + 109;
@@ -46,4 +46,3 @@ if (dolphinsAverage > koalasAverage && dolphinsAverage >= 100) {
 } else {
     console.log('No one wins!');
 }
-*/
