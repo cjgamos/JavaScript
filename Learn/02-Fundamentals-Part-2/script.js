@@ -120,6 +120,7 @@ const years = [1990, 1967, 2002, 2010, 2018];
 const age1 = calcAge(years[0]);
 */
 
+/*
 const friends = ['Harvey', 'Van', 'Nil', 'Jer'];
 
 // Add element
@@ -142,5 +143,7 @@ console.log(friends.indexOf('Jack'));
 
 console.log(friends.includes('Nil'));
 console.log(friends.includes('Jack'));
+*/
+
 
 
