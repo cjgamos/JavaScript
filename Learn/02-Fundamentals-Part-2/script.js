@@ -145,5 +145,47 @@ console.log(friends.includes('Nil'));
 console.log(friends.includes('Jack'));
 */
 
+/*
+// Arrays
+const carlArray = [
+    'Carl',
+    'Gamos',
+    2021-2000,
+    'student',
+    ['Harvey', 'Van', 'Nil', 'Jer']
+];
+*/
 
+// Objects
+const carl = {
+    firstName: 'Carl',
+    lastName: 'Gamos',
+    age: 2021 - 2000,
+    job: 'student',
+    friends: ['Harvey', 'Van', 'Nil', 'Jer']
+};
 
+console.log(carl);
+
+console.log(carl.lastName);
+console.log(carl['lastName']);
+
+const nameKey = 'Name';
+console.log(carl['first' + nameKey]);
+console.log(carl['last' + nameKey]);
+
+const interestedIn = prompt('What do you want to know about Carl? Choose between firstName, lastName, age, job, and friends.');
+
+// if (carl[interestedIn]) {
+//     console.log(carl[interestedIn]);
+// } else {
+//     console.log('Wrong request! Choose between firstName, lastName, age, job, and friends.');
+// }
+
+// carl.location = 'Philippines';
+// carl['twitter'] = '@ItisMeGamos';
+// console.log(carl);
+
+// 'Carl has 3 friends, and his best friend is called Harvey'
+
+console.log(`${carl.firstName} has ${carl.friends} friends, and his friend is called ${carl.friends[0]}.`);
