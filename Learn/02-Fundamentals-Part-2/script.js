@@ -174,7 +174,7 @@ const nameKey = 'Name';
 console.log(carl['first' + nameKey]);
 console.log(carl['last' + nameKey]);
 
-const interestedIn = prompt('What do you want to know about Carl? Choose between firstName, lastName, age, job, and friends.');
+// const interestedIn = prompt('What do you want to know about Carl? Choose between firstName, lastName, age, job, and friends.');
 
 // if (carl[interestedIn]) {
 //     console.log(carl[interestedIn]);
@@ -187,5 +187,5 @@ const interestedIn = prompt('What do you want to know about Carl? Choose between
 // console.log(carl);
 
 // 'Carl has 3 friends, and his best friend is called Harvey'
+console.log(`${carl.firstName} has ${carl.friends.length}, and his best friend is called ${carl.friends[1]}`);
 
-console.log(`${carl.firstName} has ${carl.friends} friends, and his friend is called ${carl.friends[0]}.`);
