@@ -156,6 +156,7 @@ const carlArray = [
 ];
 */
 
+/*
 // Objects
 const carl = {
     firstName: 'Carl',
@@ -188,4 +189,35 @@ console.log(carl['last' + nameKey]);
 
 // 'Carl has 3 friends, and his best friend is called Harvey'
 console.log(`${carl.firstName} has ${carl.friends.length}, and his best friend is called ${carl.friends[1]}`);
+*/
 
+const carl = {
+    firstName: 'Carl',
+    lastName: 'Gamos',
+    birthYear: 2000,
+    job: 'student',
+    friends: ['Harvey', 'Van', 'Nil', 'Jer'],
+    hasDriversLicense: false,
+
+    // calcAge: function(birthYear) {
+    //     return 2021 - birthYear;
+    // }
+
+    // calcAge: function () {
+    //     return 2021 - this.birthYear;
+    // }
+
+    calcAge: function () {
+        this.age = 2021 - this.birthYear;
+        return this.age;
+    },
+
+    getSummary: function () {
+        return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDriversLicense ? 'a' : 'no'} driver's license`;
+    }
+};
+
+console.log(carl.calcAge());
+console.log(carl['calcAge']());
+
+console.log(carl.getSummary());
