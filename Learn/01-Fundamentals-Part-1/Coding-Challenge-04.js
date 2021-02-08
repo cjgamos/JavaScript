@@ -23,3 +23,4 @@ const totalTip = bill >= 50 && bill <= 300 ? tip = (15/100) * bill : tip = (20/1
 const totalValue = tip + bill;
 
 console.log(`The bill was ${bill}, and the tip was ${totalTip}, and the total value ${totalValue}`);
+
