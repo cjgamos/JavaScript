@@ -14,44 +14,13 @@ Test data: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.9
 tall.
 */
 
-
-// const mark = {
-//     firstName: 'Mark',
-//     lastName: 'Miller',
-//     mass: 78,
-//     height: 1.69,
-
-//     calcBMI: function() {
-//         this.BMI = this.mass / this.height ** 2;
-//         return this.BMI;
-//     }
-// }
-
-
-// const john = {
-//     firstName: 'John',
-//     lastName: 'Smith',
-//     mass: 92,
-//     height: 1.95,
-
-//     calcBMI: function () {
-//         this.BMI = this.mass / this.height **2;
-//         return this.BMI;
-//     }
-// }
-
-// console.log(`${mark.calcBMI() > john.calcBMI() ? 'Mark' : 'John'}'s BMI (${mark.calcBMI() > john.calcBMI() ? mark.calcBMI() : john.calcBMI()}) is higher than ${!mark.calcBMI() > john.calcBMI() ? 'Mark' : 'John'}'s (${!mark.calcBMI() > john.calcBMI() ? mark.calcBMI() : john.calcBMI()})!`);
-
-
-
-
 const mark = {
     firstName: 'Mark',
     lastName: 'Miller',
     mass: 78,
     height: 1.69,
 
-    calcAge: function () {
+    calcBMI: function () {
         this.BMI = this.mass / this.height ** 2;
         return this.BMI;
     }
@@ -63,15 +32,23 @@ const john = {
     mass: 92,
     height: 1.95,
 
-    calcAge: function () {
+    calcBMI: function () {
         this.BMI = this.mass / this.height ** 2;
         return this.BMI;
     }
 }
 
-const highestBMI = () => {
-    return `${john.calcAge() > mark.calcAge() ? 'John' : 'Mark'}'s BMI (${john.calcAge() > mark.calcAge() ? john.calcAge() : mark.calcAge()}) is higher than ${john.calcAge() >! mark.calcAge() ? 'John' : 'Mark'}'s (${john.calcAge() >! mark.calcAge() ? john.calcAge() : mark.calcAge()})!`;
+
+// Ternary
+// const highestBMI = () => {
+//     return `${john.calcBMI() > mark.calcBMI() ? john.firstName : mark.firstName}'s BMI (${john.calcBMI() > mark.calcBMI() ? john.calcBMI() : mark.calcBMI()}) is higher than ${john.calcBMI() >! mark.calcBMI() ? john.firstName : mark.firstName}'s (${john.calcBMI() >! mark.calcBMI() ? john.calcBMI() : mark.calcBMI()})!`;
+// }
+
+// If Else Statement
+if (john.calcBMI > mark.calcBMI){
+    console.log(`${john.firstName}'s BMI (${john.calcBMI()}) is higher than ${mark.firstName}'s (${mark.calcBMI()})!`);
+} else {
+    console.log(`${mark.firstName}'s BMI (${mark.calcBMI()}) is higher than ${john.firstName}'s (${john.calcBMI()})!`)
 }
 
-console.log(`${mark.calcAge()}`, `${john.calcAge()}`);
-console.log(highestBMI());
+// console.log(highestBMI());
