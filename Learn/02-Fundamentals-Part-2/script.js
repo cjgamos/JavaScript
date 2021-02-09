@@ -191,6 +191,7 @@ console.log(carl['last' + nameKey]);
 console.log(`${carl.firstName} has ${carl.friends.length}, and his best friend is called ${carl.friends[1]}`);
 */
 
+/*
 const carl = {
     firstName: 'Carl',
     lastName: 'Gamos',
@@ -221,3 +222,5 @@ console.log(carl.calcAge());
 console.log(carl['calcAge']());
 
 console.log(carl.getSummary());
+*/
+
