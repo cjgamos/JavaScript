@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
     <nav>
-        <h4>DBM-SHIT</h4>
+        <h4>Group 6</h4>
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/login">Login</a></li>
@@ -22,14 +22,28 @@
     </nav>
 
     <div class="container mt-4">
-        <<div class="jumbotron">
-            <h1 class="display-4">Log In</h1>
-            <p class="lead">Kahit tress lang maam masaya na kami</p>
-            <hr class="my-4">
-            <p>#WAGPAHIRAPAN ANG SARILI!!</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">EVALUATION PARA SA DBMS</a>
-    </div>
+        <div class="card">
+            <div class="card-header">
+                Register Form
+            </div>
+            <div class="card-body">
+                <form action="/auth/login" method="POST">
 
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
