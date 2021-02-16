@@ -35,7 +35,6 @@ router.get('/profile', (req, res, next) => {
         res.render('profile', { opp: req.session.opp, name: user.username });
         return;
     }
-    res.render('profile');
 })
 
 // Post login data
@@ -51,7 +50,9 @@ router.post('/login', (req, res, next) => {
             res.redirect('/home');
         } else {
             // if the login function returns null send this error message back to the user.
-            res.send('Username/Password incorrect!');
+            res.render('index', {
+                messageLogin: 'Wrong Username/Password'
+            });
         }
     })
 
@@ -64,7 +65,8 @@ router.post('/register', (req, res, next) => {
     let userInput = {
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm
     };
     // call create function. to create a new user. if there is no error this function will return it's id.
     user.create(userInput, function (lastId) {
@@ -76,7 +78,6 @@ router.post('/register', (req, res, next) => {
                 req.session.opp = 0;
                 res.redirect('/home');
             });
-
         } else {
             console.log('Error creating a new user ...');
         }
