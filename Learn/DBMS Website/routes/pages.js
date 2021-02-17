@@ -1,12 +1,15 @@
 const express = require('express');
 const User = require('../core/user');
+const Admin = require('../core/admin');
 const router = express.Router();
+const pool = require('../core/pool');
 
 // create an object from the class User in the file core/user.js
 const user = new User();
+const admin = new Admin();
 
 // Get the index page
-router.get('/', (req, res, next) => {
+router.get('/index', (req, res, next) => {
     let user = req.session.user;
     // If there is a session named user that means the use is logged in. so we redirect him to home page by using /home route below
     if (user) {
@@ -15,6 +18,16 @@ router.get('/', (req, res, next) => {
     }
     // IF not we just send the index page.
     res.render('index');
+});
+
+router.get('/adminindex', (req, res, next) => {
+    let admin = req.session.admin;
+
+    if (admin) {
+        res.redirect('/adminhome');
+        return;
+    }
+    res.render('adminindex');
 })
 
 // Get home page
@@ -25,8 +38,18 @@ router.get('/home', (req, res, next) => {
         res.render('home', { opp: req.session.opp, name: user.username });
         return;
     }
-    res.redirect('/');
+    res.redirect('/index');
 });
+
+router.get('/adminhome', (req, res, next) => {
+    let admin = req.session.admin;
+
+    if (admin) {
+        res.render('adminhome', { opp: req.session.opp, name: admin.username });
+        return;
+    }
+    res.redirect('/adminindex')
+})
 
 router.get('/profile', (req, res, next) => {
     let user = req.session.user;
@@ -35,7 +58,15 @@ router.get('/profile', (req, res, next) => {
         res.render('profile', { opp: req.session.opp, name: user.username });
         return;
     }
-})
+});
+
+router.get('/adminlogs', (req, res, next) => {
+    let admin = req.session.admin;
+
+    if (admin) {
+        res.render('adminlogs');
+    }
+});
 
 // Post login data
 router.post('/login', (req, res, next) => {
@@ -46,6 +77,9 @@ router.post('/login', (req, res, next) => {
             // Store the user data in a session.
             req.session.user = result;
             req.session.opp = 1;
+            pool.query(`INSERT INTO logs(username) VALUES(?)`, [req.body.username], (err, result) => {
+                console.log(`a user has logged in.`)
+            });
             // redirect the user to the home page.
             res.redirect('/home');
         } else {
@@ -54,8 +88,24 @@ router.post('/login', (req, res, next) => {
                 messageLogin: 'Wrong Username/Password'
             });
         }
-    })
+    });
 
+});
+
+router.post('/adminlogin', (req, res, next) => {
+
+    admin.login(req.body.username, req.body.password, (result) => {
+        if (result) {
+
+            req.session.admin = result;
+            req.session.opp = 1;
+            res.redirect('/adminhome');
+        } else {
+            res.render('adminindex', {
+                messageLogin: 'Wrong Username/Password'
+            });
+        }
+    });
 });
 
 
@@ -76,6 +126,9 @@ router.post('/register', (req, res, next) => {
             user.find(lastId, function (result) {
                 req.session.user = result;
                 req.session.opp = 0;
+                pool.query(`INSERT INTO logs(username) VALUES(?)`, [req.body.username], (err, result) => {
+                    console.log(`a user has logged in.`)
+                });
                 res.redirect('/home');
             });
         } else {
@@ -85,6 +138,28 @@ router.post('/register', (req, res, next) => {
 
 });
 
+router.post('/adminregister', (req, res, next) => {
+    let userInput = {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm
+    };
+
+    admin.create(userInput, (lastId) => {
+
+        if (lastId) {
+            admin.find(lastId, (result) => {
+                req.session.admin = result;
+                req.session.opp = 0;
+                res.redirect('/adminhome');
+            });
+        } else {
+            console.log('Error creating a new admin user...');
+        }
+    })
+})
+
 
 // Get loggout page
 router.get('/logout', (req, res, next) => {
@@ -92,7 +167,15 @@ router.get('/logout', (req, res, next) => {
     if (req.session.user) {
         // destroy the session and redirect the user to the index page.
         req.session.destroy(function () {
-            res.redirect('/');
+            res.redirect('/index');
+        });
+    }
+});
+
+router.get('/adminlogout', (req, res, next) => {
+    if (req.session.admin) {
+        req.session.destroy(() => {
+            res.redirect('/adminindex');
         });
     }
 });

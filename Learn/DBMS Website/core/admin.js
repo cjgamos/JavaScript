@@ -1,34 +1,31 @@
 const pool = require('./pool');
 const bcrypt = require('bcrypt');
 
+function Admin() { };
 
-function User() { };
-
-User.prototype = {
+Admin.prototype = {
     // Find the user data by id or username.
-    find: function (user = null, callback) {
+    find: function (admin = null, callback) {
         // if the user variable is defind
-        if (user) {
+        if (admin) {
             // if user = number return field = id, if user = string return field = username.
-            var field = Number.isInteger(user) ? 'id' : 'username';
+            var field = Number.isInteger(admin) ? 'id' : 'username';
         }
         // prepare the sql query
-        let sql = `SELECT * FROM users WHERE ${field} = ?`;
+        let sql = `SELECT * FROM adminusers WHERE ${field} = ?`;
 
-        pool.query(sql, user, function (err, result) {
+
+        pool.query(sql, admin, function (err, result) {
             if (err) throw err
 
-            if (result.length > 0) {
+            if (result.length) {
                 callback(result[0]);
             } else {
                 callback(null);
             }
         });
-
     },
 
-    // This function will insert data into the database. (create a new user)
-    // body is an object 
     create: function (body, callback) {
 
         var pwd = body.password;
@@ -42,7 +39,7 @@ User.prototype = {
             bind.push(body[prop]);
         }
         // prepare the sql query
-        let sql = `INSERT INTO users(username, email, password) VALUES (?, ?, ?)`;
+        let sql = `INSERT INTO adminusers(username, email, password) VALUES (?, ?, ?)`;
         // call the query give it the sql string and the values (bind array)
         pool.query(sql, bind, function (err, result) {
             if (err) throw err;
@@ -53,13 +50,13 @@ User.prototype = {
 
     login: function (username, password, callback) {
         // find the user data by his username.
-        this.find(username, function (user) {
+        this.find(username, function (admin) {
             // if there is a user by this username.
-            if (user) {
+            if (admin) {
                 // now we check his password.
-                if (bcrypt.compareSync(password, user.password)) {
+                if (bcrypt.compareSync(password, admin.password)) {
                     // return his data.
-                    callback(user);
+                    callback(admin);
                     return;
                 }
             }
@@ -68,7 +65,6 @@ User.prototype = {
         });
 
     }
-
 }
 
-module.exports = User;
+module.exports = Admin;
