@@ -85,7 +85,7 @@ router.get('/adminlogs', (req, res, next) => {
                 }
 
                 console.log(arr);
-                return res.render('adminlogs', {
+                res.render('adminlogs', {
                     log: arr
                 });
             });
