@@ -41,6 +41,7 @@ router.get('/home', (req, res, next) => {
     res.redirect('/index');
 });
 
+// Get admin home
 router.get('/adminhome', (req, res, next) => {
     let admin = req.session.admin;
 
@@ -51,6 +52,7 @@ router.get('/adminhome', (req, res, next) => {
     res.redirect('/adminindex')
 })
 
+// Get profile
 router.get('/profile', (req, res, next) => {
     let user = req.session.user;
 
@@ -60,11 +62,32 @@ router.get('/profile', (req, res, next) => {
     }
 });
 
+// Get admin logs
 router.get('/adminlogs', (req, res, next) => {
     let admin = req.session.admin;
 
     if (admin) {
-        res.render('adminlogs');
+
+        pool.getConnection((err) => {
+            if (err) throw err;
+            let logs = `SELECT username, date FROM logs`;
+
+            pool.query(logs, (err, result) => {
+                if (err) throw err;
+
+                let arr = [];
+
+                for (i in result) {
+                    arr.push(result[i]);
+                }
+
+                console.log(arr);
+                return res.render('adminlogs', {
+                    log: arr
+                });
+            });
+        });
+
     }
 });
 
@@ -92,6 +115,7 @@ router.post('/login', (req, res, next) => {
 
 });
 
+// Post Admin Login
 router.post('/adminlogin', (req, res, next) => {
 
     admin.login(req.body.username, req.body.password, (result) => {
@@ -138,6 +162,7 @@ router.post('/register', (req, res, next) => {
 
 });
 
+// Post Admin Register
 router.post('/adminregister', (req, res, next) => {
     let userInput = {
         username: req.body.username,
@@ -172,6 +197,7 @@ router.get('/logout', (req, res, next) => {
     }
 });
 
+// Admin Logout
 router.get('/adminlogout', (req, res, next) => {
     if (req.session.admin) {
         req.session.destroy(() => {

@@ -4,16 +4,15 @@ const bcrypt = require('bcrypt');
 function Admin() { };
 
 Admin.prototype = {
-    // Find the user data by id or username.
+    // Find the admin data by id or username.
     find: function (admin = null, callback) {
-        // if the user variable is defind
+        // if the admin variable is defind
         if (admin) {
-            // if user = number return field = id, if user = string return field = username.
+            // if admin = number return field = id, if admin = string return field = username.
             var field = Number.isInteger(admin) ? 'id' : 'username';
         }
         // prepare the sql query
         let sql = `SELECT * FROM adminusers WHERE ${field} = ?`;
-
 
         pool.query(sql, admin, function (err, result) {
             if (err) throw err
@@ -26,6 +25,8 @@ Admin.prototype = {
         });
     },
 
+    // Insert data into data base (Create a new Admin User)
+    // body is an object
     create: function (body, callback) {
 
         var pwd = body.password;
@@ -49,13 +50,13 @@ Admin.prototype = {
     },
 
     login: function (username, password, callback) {
-        // find the user data by his username.
+        // find the admin data by his username.
         this.find(username, function (admin) {
-            // if there is a user by this username.
+            // if there is a admin by this username.
             if (admin) {
                 // now we check his password.
                 if (bcrypt.compareSync(password, admin.password)) {
-                    // return his data.
+                    // return this data.
                     callback(admin);
                     return;
                 }

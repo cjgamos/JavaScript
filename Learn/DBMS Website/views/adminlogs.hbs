@@ -30,27 +30,17 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">USER</th>
                                 <th scope="col">DATE/TIME</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each log}}
                             <tr>
-                                <th scope="row">1</th>
-                                <th>admiral</th>
-                                <th>2021-02-17 22:23:29</th>
+                                <td>{{username}}</td>
+                                <td>{{date}}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <th>admiral</th>
-                                <th>2021-02-17 22:24:30</th>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <th>test</th>
-                                <th>2021-02-17 21:41:24</th>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>
