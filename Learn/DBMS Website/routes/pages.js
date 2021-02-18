@@ -68,10 +68,13 @@ router.get('/adminlogs', (req, res, next) => {
 
     if (admin) {
 
+        // Logs 
         pool.getConnection((err) => {
             if (err) throw err;
+            // Store the data into Logs variable
             let logs = `SELECT username, date FROM logs`;
 
+            // Output the logs data in the website
             pool.query(logs, (err, result) => {
                 if (err) throw err;
 
@@ -87,7 +90,6 @@ router.get('/adminlogs', (req, res, next) => {
                 });
             });
         });
-
     }
 });
 
@@ -123,6 +125,9 @@ router.post('/adminlogin', (req, res, next) => {
 
             req.session.admin = result;
             req.session.opp = 1;
+            pool.query(`INSERT INTO logs(username) VALUES(?)`, [req.body.username], (err, result) => {
+                console.log(`a user has logged in.`)
+            });
             res.redirect('/adminhome');
         } else {
             res.render('adminindex', {
