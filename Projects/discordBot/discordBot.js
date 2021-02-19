@@ -2,6 +2,7 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const cron = require('cron');
 const client = new Discord.Client();
+
 // function test() {
 //     console.log('Hello Suba');
 // }
@@ -12,13 +13,16 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
 
+
     // schedule Time For Backwards
-    let scheduleMessage = new cron.CronJob('00 09 03 * * *', () => {
-        let channel = client.channels.cache.get('812327375231647778');
-        channel.send('Its a test Word');
+    let mondaySchedule = new cron.CronJob('00 30 07 * * *', () => {
+        const channel = client.channels.cache.get('767644857732038717');
+        const myGuild = client.guilds.cache.get('758138123254890596');
+        const vroan9 = myGuild.roles.cache.get('767621936531898378');
+        channel.send(`${vroan9} Goodmorning mga Badi!`);
     });
 
-    scheduleMessage.start();
+    mondaySchedule.start();
 });
 
 // client.on('ready', () => {
