@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.topContainer {
+    background-color: #6b011f;
+    color: #ddbc01;
+    text-align: center;
+    
+}

@@ -20,6 +20,7 @@ router.get('/index', (req, res, next) => {
     res.render('index');
 });
 
+// Admin Index
 router.get('/adminindex', (req, res, next) => {
     let admin = req.session.admin;
 
