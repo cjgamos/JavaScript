@@ -110,7 +110,9 @@ router.post('/login', (req, res, next) => {
             res.redirect('/home');
         } else {
             // if the login function returns null send this error message back to the user.
-            res.send('Username/Password incorrect!');
+            res.render('index', {
+                messageLogin: 'Wrong Username/Password'
+            });
         }
     })
 });
@@ -121,7 +123,7 @@ router.post('/login', (req, res, next) => {
 router.post('/adminlogin', (req, res, next) => {
     // The data sent from the user are stored in the req.body object.
     // call our login function and it will return the result(the user data).
-    user.login(req.body.username, req.body.password, function (result) {
+    admin.login(req.body.username, req.body.password, function (result) {
         if (result) {
             // Store the user data in a session.
             req.session.admin = result;
