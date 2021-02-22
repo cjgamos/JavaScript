@@ -58,7 +58,7 @@ User.prototype = {
             if (user) {
                 // now we check his password.
                 if (bcrypt.compareSync(password, user.password)) {
-                    // return this data.
+                    // return his data.
                     callback(user);
                     return;
                 }

@@ -110,34 +110,35 @@ router.post('/login', (req, res, next) => {
             res.redirect('/home');
         } else {
             // if the login function returns null send this error message back to the user.
-            res.render('index', {
-                messageLogin: 'Wrong Username/Password'
-            });
+            res.send('Username/Password incorrect!');
         }
-    });
-
+    })
 });
+
+
 
 // Post Admin Login
 router.post('/adminlogin', (req, res, next) => {
-
-    admin.login(req.body.username, req.body.password, (result) => {
+    // The data sent from the user are stored in the req.body object.
+    // call our login function and it will return the result(the user data).
+    user.login(req.body.username, req.body.password, function (result) {
         if (result) {
-
+            // Store the user data in a session.
             req.session.admin = result;
             req.session.opp = 1;
             pool.query(`INSERT INTO logs(username) VALUES(?)`, [req.body.username], (err, result) => {
                 console.log(`a user has logged in.`)
             });
+            // redirect the user to the home page.
             res.redirect('/adminhome');
         } else {
+            // if the login function returns null send this error message back to the user.
             res.render('adminindex', {
                 messageLogin: 'Wrong Username/Password'
             });
         }
-    });
+    })
 });
-
 
 // Post register data
 router.post('/register', (req, res, next) => {

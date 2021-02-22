@@ -50,14 +50,14 @@ Admin.prototype = {
     },
 
     login: function (username, password, callback) {
-        // find the admin data by his username.
-        this.find(username, function (admin) {
-            // if there is a admin by this username.
-            if (admin) {
+        // find the user data by his username.
+        this.find(username, function (user) {
+            // if there is a user by this username.
+            if (user) {
                 // now we check his password.
-                if (bcrypt.compareSync(password, admin.password)) {
-                    // return this data.
-                    callback(admin);
+                if (bcrypt.compareSync(password, user.password)) {
+                    // return his data.
+                    callback(user);
                     return;
                 }
             }
