@@ -1,25 +1,35 @@
+
+/* Nag fofocus sa buong body */
 body {
     background-color: #f2a154;
 }
 
+/* Nag fofofcus dun sa taas na color green */
 nav {
     background-color: #314e52;
     color: #f7f6e7;
     padding: 30px 60px;
     display: flex;
     justify-content: space-between;
-}
+} 
 
+/* 
+Nag fofocus dun sa color green pero kinukuha ung mismong 
+display ng Log in as admin/user tsaka dun sa mga profile, home, 
+logs chena
+*/
 nav ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
+/* Naka focus to dun sa design na bullet form */
 nav li {
     list-style: none;
-}
+}  
 
+/* Ung text sa taas sa mga Login as, Home, Profile, Logs chenakels */
 nav li a {
     color: #f7f6e7;
     text-decoration: none;
@@ -27,39 +37,48 @@ nav li a {
     padding: 5px 8px;
 }
 
+/* Pag nag hohover ung mouse mo dun sa mga  ogin as, Home, Profile, Logs*/
 nav li a:hover {
     color: #f2a154;
     text-decoration: none;
 }
 
+
+/* Ung Login Form */
 .cardLogin {
     margin-left: 30px;
 }
 
+/* Register Form */
 .cardRegister {
     margin-right: 30px;
 }
 
+/* Profile */
 .cardProfile {
     margin-top: 30px;
     margin-left: 30px;
 }
 
+/* Logs */
 .cardLog {
     margin-top: 30px;
     margin-right: 30px;
 }
 
+/* Logs din */
 .adminLog {
     margin-left: 30px;
     margin-top: 30px;
     margin-right: 30px;
 }
 
+/* Ung text sa Login at register  */
 .row {
-    text-align: center ;
+    text-align: left ;
 }
 
+/* Ung sa Logs na text */
 .lead {
     margin-top: 30px;
     font-weight: bolder;
