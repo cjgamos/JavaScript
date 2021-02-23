@@ -63,6 +63,16 @@ router.get('/profile', (req, res, next) => {
     }
 });
 
+// Get admin profile
+router.get('/adminprofile', (req, res, next) => {
+    let admin = req.session.admin;
+
+    if (user) {
+        res.render('adminprofile', { opp: req.session.opp, name: admin.username });
+        return;
+    }
+});
+
 // Get admin logs
 router.get('/adminlogs', (req, res, next) => {
     let admin = req.session.admin;
