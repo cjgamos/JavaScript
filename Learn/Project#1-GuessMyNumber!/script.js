@@ -4,14 +4,23 @@ let score = 20;
 let highscore = 0;
 
 const wrongAnswer = function () {
-    score -= 1;
-    document.querySelector('.score').textContent = score;
+    if (score > 1) {
+        score--;
+        document.querySelector('.score').textContent = score;
+    } else {
+        document.querySelector('.message').textContent = 'You lost the game!';
+        document.querySelector('.score').textContent = 0;
+    }
 };
 
 const correctAnswer = function () {
-    highscore = score;
-    document.querySelector('.highscore').textContent = highscore;
-}
+    if (highscore < score) {
+        highscore = score;
+        document.querySelector('.highscore').textContent = highscore;
+    } else {
+        document.querySelector('.highscore').textContent = highscore;
+    }
+};
 
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
 document.querySelector('.number').textContent = secretNumber;
@@ -29,10 +38,8 @@ document.querySelector('.check').addEventListener('click', () => {
     } else if (guess > secretNumber) {
         document.querySelector('.message').textContent = 'Too High!';
         wrongAnswer();
-
     } else if (guess < secretNumber) {
         document.querySelector('.message').textContent = 'Too Low!';
         wrongAnswer();
     }
-
 });
