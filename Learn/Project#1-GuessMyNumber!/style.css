@@ -34,14 +34,14 @@ main {
 }
 
 .left {
-  width: 52rem;
+  width: 2,600%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .right {
-  width: 52rem;
+  width: 2,600%;
   font-size: 2rem;
 }
 
@@ -72,14 +72,14 @@ h1 {
 .between {
   font-size: 1.4rem;
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 100%;
+  right: 100%;
 }
 
 .again {
   position: absolute;
-  top: 2rem;
-  left: 2rem;
+  top: 100%;
+  left: 100%;
 }
 
 .guess {
