@@ -4,6 +4,7 @@ const path = require('path');
 const pageRouter = require('./routes/pages');
 const app = express();
 
+
 // for body parser. to collect data that sent from the client.
 app.use(express.urlencoded({ extended: false }));
 
